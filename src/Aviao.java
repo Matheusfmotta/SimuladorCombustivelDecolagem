@@ -4,15 +4,15 @@ public class Aviao implements Calculos {
     Scanner sc = new Scanner(System.in).useLocale(Locale.US);
     FatorAmbiental ambiente = new FatorAmbiental();
 
-    String modelo;
-    double massa; // massa Vazia
-    double coeficienteSustentacaoMaximo; // lift
-    double arrastoParasita;
-    double alongamentoAsa;
-    double fatorEficienciaOswald;
-    double empuxoTotalEstatico; // motores CFM56-7B27
-    double tsfc; // para motor CFM56 operando em máxima potência durante a decolagem
-    double areaDaAsa;
+    private String modelo;
+    private double massa; // massa Vazia
+    private double coeficienteSustentacaoMaximo; // lift
+    private double arrastoParasita;
+    private double alongamentoAsa;
+    private double fatorEficienciaOswald;
+    private double empuxoTotalEstatico; // motores CFM56-7B27
+    private double tsfc; // para motor CFM56 operando em máxima potência durante a decolagem
+    private double areaDaAsa;
 
     public Aviao() {
     }
@@ -37,6 +37,78 @@ public class Aviao implements Calculos {
         this.areaDaAsa = areaDaAsa;
     }
 
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public double getMassa() {
+        return massa;
+    }
+
+    public void setMassa(double massa) {
+        this.massa = massa;
+    }
+
+    public double getCoeficienteSustentacaoMaximo() {
+        return coeficienteSustentacaoMaximo;
+    }
+
+    public void setCoeficienteSustentacaoMaximo(double coeficienteSustentacaoMaximo) {
+        this.coeficienteSustentacaoMaximo = coeficienteSustentacaoMaximo;
+    }
+
+    public double getArrastoParasita() {
+        return arrastoParasita;
+    }
+
+    public void setArrastoParasita(double arrastoParasita) {
+        this.arrastoParasita = arrastoParasita;
+    }
+
+    public double getAlongamentoAsa() {
+        return alongamentoAsa;
+    }
+
+    public void setAlongamentoAsa(double alongamentoAsa) {
+        this.alongamentoAsa = alongamentoAsa;
+    }
+
+    public double getFatorEficienciaOswald() {
+        return fatorEficienciaOswald;
+    }
+
+    public void setFatorEficienciaOswald(double fatorEficienciaOswald) {
+        this.fatorEficienciaOswald = fatorEficienciaOswald;
+    }
+
+    public double getEmpuxoTotalEstatico() {
+        return empuxoTotalEstatico;
+    }
+
+    public void setEmpuxoTotalEstatico(double empuxoTotalEstatico) {
+        this.empuxoTotalEstatico = empuxoTotalEstatico;
+    }
+
+    public double getTsfc() {
+        return tsfc;
+    }
+
+    public void setTsfc(double tsfc) {
+        this.tsfc = tsfc;
+    }
+
+    public double getAreaDaAsa() {
+        return areaDaAsa;
+    }
+
+    public void setAreaDaAsa(double areaDaAsa) {
+        this.areaDaAsa = areaDaAsa;
+    }
+
     /* total de combustível 20.600kg
     passageiros fixos (são aqueles que somam com o número de passageiros) 2 pilotos 4 comissários)
     passageiros máximos (189)
@@ -44,6 +116,9 @@ public class Aviao implements Calculos {
     avião cheio = 16.065kg de pessoas + 510kg de passageiros fixos + 20.600kg combustível
     = 37.175 PESO
     * */
+    public void alterarDensidadeAr(double novaDensidadeAr){
+        this.ambiente.setDensidadeAr(novaDensidadeAr); //alterando o valor da densidade do ar usando SET
+    }
 
     @Override
    public double calculoMassaTotal(){
@@ -100,7 +175,7 @@ public class Aviao implements Calculos {
 
     @Override
     public double calculoPeso(double massaTotal) {
-        return massaTotal * ambiente.gravidade; //peso (a força para calcular o atrito)
+        return massaTotal * ambiente.getGravidade(); //peso (a força para calcular o atrito)
     }
 }
 
