@@ -9,7 +9,7 @@ public class Main{
 
         System.out.println("----- CONFIGURANDO AMBIENTE -----");
         System.out.println("Escolha o valor da densidade do ar antes da decolagem:");
-        System.out.println("(1)Pista nível do mar 1.225 | (2)Pista em grande altitude 0.960 | (3)Escolher Densidade do ar");
+        System.out.println("(1)Pista nível do mar 1.225 \n(2)Pista em grande altitude 0.960 \n(3)Escolher Densidade do ar");
         double DensidadeArFinal = 0;
         int escolha = sc.nextInt();
         if(escolha == 1){
@@ -20,16 +20,33 @@ public class Main{
             System.out.println("Digite seu valor:");
             DensidadeArFinal = sc.nextDouble();
         }
-
         Boeing.alterarDensidadeAr(DensidadeArFinal);
 
-
+        System.out.println("Agora defina o coeficiente de atrito da pista:");
+        System.out.println("(1)Pista seca 0.03 \n(2)Pista molhada 0.05 \n(3)Escolher Coeficiente de atrito da pista");
+        double coeficienteAtritoPistaFinal = 0;
+        escolha = sc.nextInt();
+        if (escolha == 1){
+            coeficienteAtritoPistaFinal = 0.03;
+        }else if(escolha == 2){
+            coeficienteAtritoPistaFinal = 0.05;;
+        }else{
+            System.out.println("Digite seu valor:");
+            coeficienteAtritoPistaFinal = sc.nextDouble();
+        }
+        Boeing.alterarAtritoPista(coeficienteAtritoPistaFinal);
 
         double massaFinal = Boeing.calculoMassaTotal();
         double pesoFinal = Boeing.calculoPeso(massaFinal);
+        //Feito escolhas de densidade e atrito + calculo massa total e calculo peso
 
+        double velocidadeAtual = 0; //velocimetro
+        double litrosGastos = 0; //Minha resposta
+        double posicao = 0; //Quanto andou na pista
+        double tempo = 0; //tempo que durou decolagem
 
-        System.out.println(massaFinal);
-        System.out.println(pesoFinal);
+        double velocidadeDecolagemFinal = Boeing.velocidadeParaDecolagem(pesoFinal,DensidadeArFinal);
+        System.out.printf("VELOCIDADE DE DECOLAGEM DO %s É %.2f m/s%n", Boeing.getModelo(), velocidadeDecolagemFinal);
+
     }
 }

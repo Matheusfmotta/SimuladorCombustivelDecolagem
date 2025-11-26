@@ -1,8 +1,8 @@
 public final class FatorAmbiental {
     private double gravidade = 9.81;
     private double deltaT = 0.1;
-    private double densidadeAr = 1.225;//como padrão mas fornecer a opção de outra opção
-    private double coeficienteAtritoPista = 0.03;//como padrão mas fornecer a opção de molhada que é 0.05
+    private double densidadeAr = 1.225;
+    private double coeficienteAtritoPista = 0.03;
 
 
 
@@ -19,7 +19,7 @@ public final class FatorAmbiental {
     }
 
     public void setDensidadeAr(double densidadeAr) {
-        this.densidadeAr = this.densidadeAr;
+        this.densidadeAr = densidadeAr;
     }
 
     public double getCoeficienteAtritoPista() {

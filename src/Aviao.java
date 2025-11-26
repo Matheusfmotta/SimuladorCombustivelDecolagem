@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.util.Locale;
 public class Aviao implements Calculos {
     Scanner sc = new Scanner(System.in).useLocale(Locale.US);
-    FatorAmbiental ambiente = new FatorAmbiental();
+    FatorAmbiental ambiente = new FatorAmbiental(); //ATENÇÃO AQUI
 
     private String modelo;
     private double massa; // massa Vazia
@@ -109,15 +109,12 @@ public class Aviao implements Calculos {
         this.areaDaAsa = areaDaAsa;
     }
 
-    /* total de combustível 20.600kg
-    passageiros fixos (são aqueles que somam com o número de passageiros) 2 pilotos 4 comissários)
-    passageiros máximos (189)
-    cada passageiros + bagagem de mão estabelece uma média de 85kg
-    avião cheio = 16.065kg de pessoas + 510kg de passageiros fixos + 20.600kg combustível
-    = 37.175 PESO
-    * */
     public void alterarDensidadeAr(double novaDensidadeAr){
         this.ambiente.setDensidadeAr(novaDensidadeAr); //alterando o valor da densidade do ar usando SET
+    }
+
+    public void alterarAtritoPista(double novoAtritoPista){
+        this.ambiente.setCoeficienteAtritoPista(novoAtritoPista);
     }
 
     @Override
@@ -152,7 +149,7 @@ public class Aviao implements Calculos {
         System.out.println("Digite a quantidade de passageiros:");
         System.out.println("(1)Capacidade máxima 189 passageiros");
         System.out.println("(2)Capacidade metade 95 passageiros");
-        System.out.println("(3)Digitar valor de passageiros");
+        System.out.println("(3)Escolher quantidade");
             escolha = sc.nextInt();
             switch  (escolha){
 
@@ -163,6 +160,7 @@ public class Aviao implements Calculos {
                     passageiros = 95;
                     break;
                 case 3:
+                    System.out.println("Digite o número de passageiros");
                     passageiros = sc.nextDouble();
                     break;
                 default:
@@ -176,6 +174,12 @@ public class Aviao implements Calculos {
     @Override
     public double calculoPeso(double massaTotal) {
         return massaTotal * ambiente.getGravidade(); //peso (a força para calcular o atrito)
+    }
+
+    @Override
+    public double velocidadeParaDecolagem(double pesoTotal, double densidadeAr) {
+        return Math.sqrt((2 * pesoTotal)/ (densidadeAr * areaDaAsa * coeficienteSustentacaoMaximo)) *1.1;
+        //1.1 ou 1.2 representa uma velocidade mais segura de decolagem
     }
 }
 
