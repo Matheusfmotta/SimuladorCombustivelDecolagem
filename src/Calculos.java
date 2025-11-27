@@ -7,5 +7,7 @@ public interface Calculos {
 
     //avião precisa atingir a velocidade final de X para que a Sustentação gerada pela asa seja maior que o Peso do avião
     double velocidadeParaDecolagem(double pesoTotal, double densidadeAr);
-    }
 
+    double sustentacao(double densidadeAr, double velocidade);
+
+    }

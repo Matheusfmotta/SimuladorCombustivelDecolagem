@@ -124,10 +124,11 @@ public class Aviao implements Calculos {
         int escolha;
 
         do{
+            System.out.println("----- CONFIGURANDO PESO DO "+ getModelo()+" -----");
         System.out.println("Digite o valor de combustível da aeronave:");
-        System.out.println("(1)Combustível máximo 20.600KG");
-        System.out.println("(2)Combustível pela metade 10.300KG");
-        System.out.println("(3)Digitar valor do combustível");
+        System.out.println("(1) Combustível máximo 20.600 KG");
+        System.out.println("(2) Combustível pela metade 10.300 KG");
+        System.out.println("(3) Digitar valor do combustível");
         escolha = sc.nextInt();
         switch  (escolha){
 
@@ -147,9 +148,9 @@ public class Aviao implements Calculos {
 
         do{
         System.out.println("Digite a quantidade de passageiros:");
-        System.out.println("(1)Capacidade máxima 189 passageiros");
-        System.out.println("(2)Capacidade metade 95 passageiros");
-        System.out.println("(3)Escolher quantidade");
+        System.out.println("(1) Capacidade máxima 189 passageiros");
+        System.out.println("(2) Capacidade metade 95 passageiros");
+        System.out.println("(3) Escolher quantidade");
             escolha = sc.nextInt();
             switch  (escolha){
 
@@ -180,6 +181,12 @@ public class Aviao implements Calculos {
     public double velocidadeParaDecolagem(double pesoTotal, double densidadeAr) {
         return Math.sqrt((2 * pesoTotal)/ (densidadeAr * areaDaAsa * coeficienteSustentacaoMaximo)) *1.1;
         //1.1 ou 1.2 representa uma velocidade mais segura de decolagem
+        //Math.sqrt significa raiz quadrada
+    }
+
+    @Override
+    public double sustentacao(double densidadeAr, double velocidade) {
+        return 0.5 * densidadeAr * (velocidade * velocidade) * areaDaAsa * coeficienteSustentacaoMaximo;
     }
 }
 

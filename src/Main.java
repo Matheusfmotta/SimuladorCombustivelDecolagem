@@ -7,9 +7,9 @@ public class Main{
                 0.05,9.45,0.7, 242800.0,
                 0.000024,124.6);
 
-        System.out.println("----- CONFIGURANDO AMBIENTE -----");
+        System.out.println("----- CONFIGURANDO AMBIENTE DE DECOLAGEM-----");
         System.out.println("Escolha o valor da densidade do ar antes da decolagem:");
-        System.out.println("(1)Pista nível do mar 1.225 \n(2)Pista em grande altitude 0.960 \n(3)Escolher Densidade do ar");
+        System.out.println("(1) Pista ao nível do mar 1.225 \n(2) Pista em grande altitude 0.960 \n(3) Escolher a Densidade do ar");
         double DensidadeArFinal = 0;
         int escolha = sc.nextInt();
         if(escolha == 1){
@@ -23,13 +23,13 @@ public class Main{
         Boeing.alterarDensidadeAr(DensidadeArFinal);
 
         System.out.println("Agora defina o coeficiente de atrito da pista:");
-        System.out.println("(1)Pista seca 0.03 \n(2)Pista molhada 0.05 \n(3)Escolher Coeficiente de atrito da pista");
+        System.out.println("(1) Pista seca 0.03 \n(2) Pista molhada 0.05 \n(3) Escolher o Coeficiente de atrito da pista");
         double coeficienteAtritoPistaFinal = 0;
         escolha = sc.nextInt();
         if (escolha == 1){
             coeficienteAtritoPistaFinal = 0.03;
         }else if(escolha == 2){
-            coeficienteAtritoPistaFinal = 0.05;;
+            coeficienteAtritoPistaFinal = 0.05;
         }else{
             System.out.println("Digite seu valor:");
             coeficienteAtritoPistaFinal = sc.nextDouble();
@@ -47,6 +47,17 @@ public class Main{
 
         double velocidadeDecolagemFinal = Boeing.velocidadeParaDecolagem(pesoFinal,DensidadeArFinal);
         System.out.printf("VELOCIDADE DE DECOLAGEM DO %s É %.2f m/s%n", Boeing.getModelo(), velocidadeDecolagemFinal);
+        System.out.printf("FAZENDO CONVERSÕES, A VELOCIDADE DE DECOLAGEM É: %.2f km/h / %.2f Kt%n",
+                (velocidadeDecolagemFinal * 3.6),
+                (velocidadeDecolagemFinal * 1.9));
+        System.out.printf("COM PESO FINAL DE: %.0f KG%n", pesoFinal);
+
+        //TODO LOOP DE ACELERAÇÃO NA PISTA
+        while(velocidadeAtual < velocidadeDecolagemFinal){
+        //CALCULOS:
+        double sustentacaoFinal = Boeing.sustentacao(DensidadeArFinal,velocidadeAtual);
+        }
+
 
     }
 }
