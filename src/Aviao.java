@@ -6,7 +6,7 @@ public class Aviao implements Calculos {
 
     private String modelo;
     private double massa; // massa Vazia
-    private double coeficienteSustentacaoMaximo; // lift
+    private double coeficienteSustentacaoMaximo;// lift, valor usado como sustentação solo para simplificar cálculo
     private double arrastoParasita;
     private double alongamentoAsa;
     private double fatorEficienciaOswald;
@@ -187,6 +187,19 @@ public class Aviao implements Calculos {
     @Override
     public double sustentacao(double densidadeAr, double velocidade) {
         return 0.5 * densidadeAr * (velocidade * velocidade) * areaDaAsa * coeficienteSustentacaoMaximo;
+    }
+    @Override
+    public double fatorAuxiliarArrasto(){
+        return 1/ (3.1415 * alongamentoAsa * fatorEficienciaOswald);
+    }
+    @Override
+    public double calculoArrastoTotal(double fatorAuxiliar){
+        return arrastoParasita + ((fatorAuxiliar * coeficienteSustentacaoMaximo) * coeficienteSustentacaoMaximo);
+    }
+
+    @Override
+    public double forcaArrasto(double arrastoTotal, double velocidade, double densidadeAr){
+        return 0.5 * densidadeAr * (velocidade * velocidade) * areaDaAsa * arrastoTotal;
     }
 }
 

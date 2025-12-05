@@ -10,4 +10,10 @@ public interface Calculos {
 
     double sustentacao(double densidadeAr, double velocidade);
 
+    double fatorAuxiliarArrasto();
+
+    double calculoArrastoTotal(double fatorAuxiliar);
+
+    double forcaArrasto(double arrastoTotal, double velocidade, double densidadeAr);
+
     }

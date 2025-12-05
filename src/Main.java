@@ -52,12 +52,15 @@ public class Main{
                 (velocidadeDecolagemFinal * 1.9));
         System.out.printf("COM PESO FINAL DE: %.0f KG%n", pesoFinal);
 
+        //calculando arrasto total para achar força de arrasto
+        double fatorAuxiliarArrasto = Boeing.fatorAuxiliarArrasto();
+        double ArrastoTotalFinal = Boeing.calculoArrastoTotal(fatorAuxiliarArrasto);
+
         //TODO LOOP DE ACELERAÇÃO NA PISTA
         while(velocidadeAtual < velocidadeDecolagemFinal){
         //CALCULOS:
         double sustentacaoFinal = Boeing.sustentacao(DensidadeArFinal,velocidadeAtual);
+        double forcaArrasto = Boeing.forcaArrasto(ArrastoTotalFinal,velocidadeAtual,DensidadeArFinal);
         }
-
-
     }
 }
