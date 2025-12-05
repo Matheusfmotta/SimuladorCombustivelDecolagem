@@ -5,7 +5,7 @@ public class Main{
         Scanner sc = new Scanner(System.in).useLocale(Locale.US);
         Aviao Boeing = new Aviao("Boeing 737 800", 41413.0, 2.1,
                 0.05,9.45,0.7, 242800.0,
-                0.000024,124.6);
+                0.000024,124.6,1.0);
 
         System.out.println("----- CONFIGURANDO AMBIENTE DE DECOLAGEM-----");
         System.out.println("Escolha o valor da densidade do ar antes da decolagem:");

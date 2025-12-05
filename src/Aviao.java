@@ -6,13 +6,14 @@ public class Aviao implements Calculos {
 
     private String modelo;
     private double massa; // massa Vazia
-    private double coeficienteSustentacaoMaximo;// lift, valor usado como sustentação solo para simplificar cálculo
+    private double coeficienteSustentacaoMaximo;// lift, valor usado para saber o valor de velocidade para decolar
     private double arrastoParasita;
     private double alongamentoAsa;
     private double fatorEficienciaOswald;
     private double empuxoTotalEstatico; // motores CFM56-7B27
     private double tsfc; // para motor CFM56 operando em máxima potência durante a decolagem
     private double areaDaAsa;
+    private double coeficienteSustentacaoSolo;
 
     public Aviao() {
     }
@@ -25,7 +26,8 @@ public class Aviao implements Calculos {
                  double fatorEficienciaOswald,
                  double empuxoTotalEstatico,
                  double tsfc,
-                 double areaDaAsa) {
+                 double areaDaAsa,
+                 double coeficienteSustentacaoSolo) {
         this.modelo = modelo;
         this.massa = massa;
         this.coeficienteSustentacaoMaximo = coeficienteSustentacaoMaximo;
@@ -35,6 +37,7 @@ public class Aviao implements Calculos {
         this.empuxoTotalEstatico = empuxoTotalEstatico;
         this.tsfc = tsfc;
         this.areaDaAsa = areaDaAsa;
+        this.coeficienteSustentacaoSolo = coeficienteSustentacaoSolo;
     }
 
     public String getModelo() {
@@ -107,6 +110,14 @@ public class Aviao implements Calculos {
 
     public void setAreaDaAsa(double areaDaAsa) {
         this.areaDaAsa = areaDaAsa;
+    }
+
+    public double getCoeficienteSustentacaoSolo() {
+        return coeficienteSustentacaoSolo;
+    }
+
+    public void setCoeficienteSustentacaoSolo(double coeficienteSustentacaoSolo) {
+        this.coeficienteSustentacaoSolo = coeficienteSustentacaoSolo;
     }
 
     public void alterarDensidadeAr(double novaDensidadeAr){
@@ -186,15 +197,18 @@ public class Aviao implements Calculos {
 
     @Override
     public double sustentacao(double densidadeAr, double velocidade) {
-        return 0.5 * densidadeAr * (velocidade * velocidade) * areaDaAsa * coeficienteSustentacaoMaximo;
+        return 0.5 * densidadeAr * (velocidade * velocidade) * areaDaAsa * coeficienteSustentacaoSolo;
     }
+
     @Override
     public double fatorAuxiliarArrasto(){
         return 1/ (3.1415 * alongamentoAsa * fatorEficienciaOswald);
+        //pi = 3.1415
     }
+
     @Override
     public double calculoArrastoTotal(double fatorAuxiliar){
-        return arrastoParasita + ((fatorAuxiliar * coeficienteSustentacaoMaximo) * coeficienteSustentacaoMaximo);
+        return arrastoParasita + ((fatorAuxiliar * coeficienteSustentacaoSolo) * coeficienteSustentacaoSolo);
     }
 
     @Override
