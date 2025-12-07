@@ -16,4 +16,5 @@ public interface Calculos {
 
     double forcaArrasto(double arrastoTotal, double velocidade, double densidadeAr);
 
+    double forcaAtrito(double pesoTotal, double sustentacao, double coeficienteAtritoPista);
     }

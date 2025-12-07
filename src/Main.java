@@ -56,11 +56,12 @@ public class Main{
         double fatorAuxiliarArrasto = Boeing.fatorAuxiliarArrasto();
         double ArrastoTotalFinal = Boeing.calculoArrastoTotal(fatorAuxiliarArrasto);
 
-        //TODO LOOP DE ACELERAÇÃO NA PISTA
+        //LOOP DE ACELERAÇÃO NA PISTA
         while(velocidadeAtual < velocidadeDecolagemFinal){
         //CALCULOS:
         double sustentacaoFinal = Boeing.sustentacao(DensidadeArFinal,velocidadeAtual);
         double forcaArrasto = Boeing.forcaArrasto(ArrastoTotalFinal,velocidadeAtual,DensidadeArFinal);
+        double forcaAtritoFinal = Boeing.forcaAtrito(pesoFinal,sustentacaoFinal,coeficienteAtritoPistaFinal);
         }
     }
 }

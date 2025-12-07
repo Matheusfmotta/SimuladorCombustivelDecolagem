@@ -215,5 +215,11 @@ public class Aviao implements Calculos {
     public double forcaArrasto(double arrastoTotal, double velocidade, double densidadeAr){
         return 0.5 * densidadeAr * (velocidade * velocidade) * areaDaAsa * arrastoTotal;
     }
+
+    @Override
+    public double forcaAtrito(double pesoTotal, double sustentacao, double coeficienteAtritoPista){
+        return Math.max(0, (pesoTotal - sustentacao)) * coeficienteAtritoPista;
+        //Math.max compara dois resultado A=0 e B=cálculo, retorna o maior valor, se cálculo for negativo, só retorna 0
+    }
 }
 
