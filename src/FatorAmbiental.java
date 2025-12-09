@@ -4,8 +4,6 @@ public final class FatorAmbiental {
     private double densidadeAr = 1.225;
     private double coeficienteAtritoPista = 0.03;
 
-
-
     public double getGravidade() {
         return gravidade;
     }
@@ -29,5 +27,4 @@ public final class FatorAmbiental {
     public void setCoeficienteAtritoPista(double coeficienteAtritoPista) {
         this.coeficienteAtritoPista = coeficienteAtritoPista;
     }
-
 }

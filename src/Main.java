@@ -62,6 +62,7 @@ public class Main{
         double sustentacaoFinal = Boeing.sustentacao(DensidadeArFinal,velocidadeAtual);
         double forcaArrasto = Boeing.forcaArrasto(ArrastoTotalFinal,velocidadeAtual,DensidadeArFinal);
         double forcaAtritoFinal = Boeing.forcaAtrito(pesoFinal,sustentacaoFinal,coeficienteAtritoPistaFinal);
+        double forcaResultanteFinal = Boeing.forcaResultante(forcaArrasto, forcaAtritoFinal);
         }
     }
 }

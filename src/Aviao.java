@@ -155,6 +155,7 @@ public class Aviao implements Calculos {
             default:
                 System.out.println("Você não digitou um valor válido");
                 break;}
+
         }while(combustivel < 1999.0 || combustivel > 20600.0);
 
         do{
@@ -178,6 +179,7 @@ public class Aviao implements Calculos {
                 default:
                     System.out.println("Você não digitou um valor válido");
                     break;}
+
         }while(passageiros < 1 || passageiros > 189);
         double massaTotalCalculada = (massa + 520 + combustivel +(passageiros * 85)); //massa (para calcular aceleração)
         return massaTotalCalculada;
@@ -220,6 +222,11 @@ public class Aviao implements Calculos {
     public double forcaAtrito(double pesoTotal, double sustentacao, double coeficienteAtritoPista){
         return Math.max(0, (pesoTotal - sustentacao)) * coeficienteAtritoPista;
         //Math.max compara dois resultado A=0 e B=cálculo, retorna o maior valor, se cálculo for negativo, só retorna 0
+    }
+
+    @Override
+    public double forcaResultante(double forcaArrasto, double forcaAtritoFinal){
+        return (empuxoTotalEstatico - forcaArrasto) - forcaAtritoFinal;
     }
 }
 
