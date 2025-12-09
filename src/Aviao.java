@@ -228,5 +228,9 @@ public class Aviao implements Calculos {
     public double forcaResultante(double forcaArrasto, double forcaAtritoFinal){
         return (empuxoTotalEstatico - forcaArrasto) - forcaAtritoFinal;
     }
+    @Override
+    public double aceleracao(double forcaResultanteFinal, double massaTotal){
+        return (forcaResultanteFinal/massaTotal);
+    }
 }
 

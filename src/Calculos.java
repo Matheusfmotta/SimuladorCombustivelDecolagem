@@ -20,4 +20,5 @@ public interface Calculos {
 
     double forcaResultante(double forcaArrasto, double forcaAtritoFinal);
 
+    double aceleracao(double forcaResultanteFinal, double massaTotal);
     }
