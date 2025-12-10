@@ -56,9 +56,8 @@ public class Main{
         double fatorAuxiliarArrasto = Boeing.fatorAuxiliarArrasto();
         double ArrastoTotalFinal = Boeing.calculoArrastoTotal(fatorAuxiliarArrasto);
 
-        //LOOP DE ACELERAÇÃO NA PISTA
+        //CALCULO
         while(velocidadeAtual < velocidadeDecolagemFinal){
-        //CALCULOS:
         double sustentacaoFinal = Boeing.sustentacao(DensidadeArFinal,velocidadeAtual);
         double forcaArrasto = Boeing.forcaArrasto(ArrastoTotalFinal,velocidadeAtual,DensidadeArFinal);
         double forcaAtritoFinal = Boeing.forcaAtrito(pesoFinal,sustentacaoFinal,coeficienteAtritoPistaFinal);
@@ -71,5 +70,8 @@ public class Main{
         tempo += Boeing.ambiente.getDeltaT();
         }
 
+        //VISUALIZACAO DE RESULTADOS
+        double combustivelGastosL = Boeing.conversaoKgParaL(combustivelGastosKg);
+        Boeing.gerarRelatorio(Boeing.getModelo(), massaFinal,DensidadeArFinal,combustivelGastosKg,tempo,posicaoAtual, combustivelGastosL);
     }
 }

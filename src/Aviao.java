@@ -1,6 +1,6 @@
 import java.util.Scanner;
 import java.util.Locale;
-public class Aviao implements Calculos {
+public class Aviao implements Calculos, Informacoes {
     Scanner sc = new Scanner(System.in).useLocale(Locale.US);
     FatorAmbiental ambiente = new FatorAmbiental(); //ATENÇÃO AQUI
 
@@ -247,6 +247,35 @@ public class Aviao implements Calculos {
     @Override
     public double consumoCombustivel(){
         return (empuxoTotalEstatico * tsfc) * ambiente.getDeltaT();
+    }
+
+    @Override
+    public double conversaoKgParaL(double consumoCombustivel){
+        return consumoCombustivel/0.804;
+    }
+
+    @Override
+    public void gerarRelatorio(String modelo,
+                               double massaFinal,
+                               double densidadeAr,
+                               double combustivelGastoKg,
+                               double tempo,
+                               double distancia,
+                               double combustivelGastoL){
+        System.out.println("\n==================================================");
+        System.out.println("          RELATÓRIO FINAL DE DECOLAGEM            ");
+        System.out.println("==================================================");
+        System.out.printf(Locale.US, "AERONAVE MODELO         : %s%n", modelo);
+        System.out.printf(Locale.US, "MASSA TOTAL NA DECOLAGEM: %.0f KG%n", massaFinal);
+        System.out.println("--------------------------------------------------");
+        System.out.println("DESEMPENHO:");
+        System.out.printf(Locale.US, "DISTANCIA PERCORRIDA   : %.2f m%n", distancia);
+        System.out.printf(Locale.US, "TEMPO TOTAL DE CORRIDA : %.2f s%n", tempo);
+        System.out.println("--------------------------------------------------");
+        System.out.println("CONSUMO DE COMBUSTIVEL DURANTE DECOLAGEM:");
+        System.out.printf(Locale.US, "EM MASSA (Calculado)   : %.2f KG%n", combustivelGastoKg);
+        System.out.printf(Locale.US, "EM VOLUME (Estimado)   : %.2f L%n", combustivelGastoL);
+        System.out.println("==================================================\n");
     }
 }
 

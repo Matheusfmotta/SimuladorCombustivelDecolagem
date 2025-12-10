@@ -27,4 +27,6 @@ public interface Calculos {
     double posicao(double posicaoAtual, double velocidadeAtual);
 
     double consumoCombustivel();
+
+    double conversaoKgParaL(double consumoCombustivel);
     }
