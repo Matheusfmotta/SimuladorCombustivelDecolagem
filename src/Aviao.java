@@ -228,9 +228,25 @@ public class Aviao implements Calculos {
     public double forcaResultante(double forcaArrasto, double forcaAtritoFinal){
         return (empuxoTotalEstatico - forcaArrasto) - forcaAtritoFinal;
     }
+
     @Override
     public double aceleracao(double forcaResultanteFinal, double massaTotal){
         return (forcaResultanteFinal/massaTotal);
+    }
+
+    @Override
+    public double velocidade(double velocidadeAtual,double aceleracao){
+        return velocidadeAtual + (aceleracao * ambiente.getDeltaT());
+    }
+
+    @Override
+    public double posicao(double posicaoAtual, double velocidadeAtual){
+        return posicaoAtual + (velocidadeAtual * ambiente.getDeltaT());
+    }
+
+    @Override
+    public double consumoCombustivel(){
+        return (empuxoTotalEstatico * tsfc) * ambiente.getDeltaT();
     }
 }
 

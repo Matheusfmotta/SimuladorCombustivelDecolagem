@@ -21,4 +21,10 @@ public interface Calculos {
     double forcaResultante(double forcaArrasto, double forcaAtritoFinal);
 
     double aceleracao(double forcaResultanteFinal, double massaTotal);
+
+    double velocidade(double velocidadeAtual,double aceleracao);
+
+    double posicao(double posicaoAtual, double velocidadeAtual);
+
+    double consumoCombustivel();
     }

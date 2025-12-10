@@ -41,8 +41,8 @@ public class Main{
         //Feito escolhas de densidade e atrito + calculo massa total e calculo peso
 
         double velocidadeAtual = 0; //velocimetro
-        double litrosGastos = 0; //Minha resposta
-        double posicao = 0; //Quanto andou na pista
+        double combustivelGastosKg = 0; //Minha resposta
+        double posicaoAtual = 0; //Quanto andou na pista
         double tempo = 0; //tempo que durou decolagem
 
         double velocidadeDecolagemFinal = Boeing.velocidadeParaDecolagem(pesoFinal,DensidadeArFinal);
@@ -64,6 +64,12 @@ public class Main{
         double forcaAtritoFinal = Boeing.forcaAtrito(pesoFinal,sustentacaoFinal,coeficienteAtritoPistaFinal);
         double forcaResultanteFinal = Boeing.forcaResultante(forcaArrasto, forcaAtritoFinal);
         double aceleracaoFinal = Boeing.aceleracao(forcaResultanteFinal,massaFinal);
+        velocidadeAtual = Boeing.velocidade(velocidadeAtual,aceleracaoFinal);
+        posicaoAtual = Boeing.posicao(posicaoAtual,velocidadeAtual);
+        double consumoCombustivelAtual = Boeing.consumoCombustivel();
+        combustivelGastosKg += consumoCombustivelAtual;
+        tempo += Boeing.ambiente.getDeltaT();
         }
+
     }
 }
